@@ -1,0 +1,22 @@
+Wed Aug 21 14:11:32 PDT 2019
+
+[COMMAND] checksource hello.h hello.cpp main.cpp Makefile
+
+[COMMAND] cpplint.py.perl hello.h hello.cpp main.cpp
+Done processing hello.h
+Done processing hello.cpp
+Done processing main.cpp
+
+[COMMAND] file *
+HEADER.html:  HTML document, ASCII text
+Makefile:     ASCII text
+Makefile.dep: ASCII text
+RCS:          directory
+files.log:    ASCII text
+hello:        ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), dynamically linked (uses shared libs), for GNU/Linux 2.6.32, BuildID[sha1]=d58fc5ccb99729bc2e6c21de0a274f56c828abb2, not stripped
+hello.cpp:    C source, ASCII text
+hello.h:      C++ source, ASCII text
+hello.o:      ELF 64-bit LSB relocatable, x86-64, version 1 (GNU/Linux), not stripped
+main.cpp:     C source, ASCII text
+main.o:       ELF 64-bit LSB relocatable, x86-64, version 1 (GNU/Linux), not stripped
+test.out:     C source, ASCII text

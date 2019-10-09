@@ -1,0 +1,22 @@
+Execname: hello, Compiled: Aug 21 2019 14:11:31
+This is: main.cpp[20]: int main(int, char**)
+0x11c7140->hello::hello() {"Hello, World!"}
+0x11c7140->void hello::say(std::ostream&) {"Hello, World!"}
+Hello, World!
+0x7ffcb422c538->hello::hello(const string&) {"Goodbye, world!"}
+0x7ffcb422c538->void hello::say(std::ostream&) {"Goodbye, world!"}
+Goodbye, world!
+0x7ffcb422c530->hello::hello(const hello&) {"Hello, World!"}
+0x7ffcb422c530->void hello::say(std::ostream&) {"Hello, World!"}
+Hello, World!
+for: foo
+for: bar
+for: baz
+for: qux
+for_each: foo
+for_each: bar
+for_each: baz
+for_each: qux
+0x7ffcb422c530->hello::~hello() {"Hello, World!"}
+0x7ffcb422c538->hello::~hello() {"Goodbye, world!"}
+0x11c7140->hello::~hello() {"Hello, World!"}

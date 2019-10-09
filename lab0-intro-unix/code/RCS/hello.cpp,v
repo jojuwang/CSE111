@@ -1,0 +1,276 @@
+head	1.9;
+access;
+symbols;
+locks;
+comment	@// @;
+
+
+1.9
+date	2019.04.03.20.52.31;	author -;	state -;
+branches;
+next	1.8;
+
+1.8
+date	2019.04.03.20.51.45;	author -;	state -;
+branches;
+next	1.7;
+
+1.7
+date	2019.04.02.01.22.12;	author -;	state -;
+branches;
+next	1.6;
+
+1.6
+date	2019.04.02.01.21.23;	author -;	state -;
+branches;
+next	1.5;
+
+1.5
+date	2019.04.02.01.21.02;	author -;	state -;
+branches;
+next	1.4;
+
+1.4
+date	2019.04.02.01.20.35;	author -;	state -;
+branches;
+next	1.3;
+
+1.3
+date	2019.04.02.01.19.29;	author -;	state -;
+branches;
+next	1.2;
+
+1.2
+date	2019.04.01.20.25.38;	author -;	state -;
+branches;
+next	1.1;
+
+1.1
+date	2018.01.05.22.33.39;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.9
+log
+@-
+@
+text
+@// $Id: hello.cpp,v 1.8 2019-04-03 13:51:45-07 - - $
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+#include "hello.h"
+
+#define SHOW { \
+        cout << this << "->" << __PRETTY_FUNCTION__ \
+             << " {\"" << message << "\"}" << endl; \
+        }
+
+hello::hello() {
+   SHOW;
+}
+
+hello::hello (const hello& that): message (that.message) {
+   SHOW;
+}
+
+hello& hello::operator= (const hello& that) {
+   SHOW;
+   if (this != &that) message = that.message;
+   return *this;
+}
+
+hello::hello (hello&& that): message (std::move (that.message)) {
+   SHOW;
+}
+
+hello& hello::operator= (hello&& that) {
+   SHOW;
+   if (this != &that) message = std::move (that.message);
+   return *this;
+}
+
+hello::~hello() {
+   SHOW;
+}
+
+hello::hello (const string& message_): message(message_) {
+   SHOW;
+}
+
+void hello::say (ostream& out) {
+   SHOW;
+   out << message << endl;
+}
+
+@
+
+
+1.8
+log
+@-
+@
+text
+@d1 1
+a1 1
+// $Id: hello.cpp,v 1.7 2019-04-01 18:22:12-07 - - $
+d11 1
+a11 1
+             << " (\"" << message << "\")" << endl; \
+@
+
+
+1.7
+log
+@-
+@
+text
+@d1 1
+a1 1
+// $Id: hello.cpp,v 1.6 2019-04-01 18:21:23-07 - - $
+d9 3
+a11 2
+#define SHOW_FN { \
+        cout << this << "->" << __PRETTY_FUNCTION__ << endl; \
+d15 1
+a15 1
+   SHOW_FN;
+d19 1
+a19 1
+   SHOW_FN;
+d23 1
+a23 1
+   SHOW_FN;
+d29 1
+a29 1
+   SHOW_FN;
+d33 1
+a33 1
+   SHOW_FN;
+d39 1
+a39 1
+   SHOW_FN;
+d43 1
+a43 2
+   SHOW_FN;
+   cout << "message = \"" << message << "\"" << endl;
+d47 1
+a47 1
+   SHOW_FN;
+@
+
+
+1.6
+log
+@-
+@
+text
+@d1 1
+a1 1
+// $Id: hello.cpp,v 1.5 2019-04-01 18:21:02-07 - - $
+d27 1
+a27 1
+hello::hello (hello&&) {
+@
+
+
+1.5
+log
+@-
+@
+text
+@d1 1
+a1 1
+// $Id: hello.cpp,v 1.4 2019-04-01 18:20:35-07 - - $
+d23 1
+a23 1
+   if (this != &that) message = hello.message;
+d33 1
+a33 1
+   if (this != &that) message = std::move (hello.message);
+@
+
+
+1.4
+log
+@-
+@
+text
+@d1 1
+a1 1
+// $Id: hello.cpp,v 1.3 2019-04-01 18:19:29-07 - - $
+d21 1
+a21 1
+hello& hello::operator= (const hello&) {
+d31 1
+a31 1
+hello& hello::operator= (hello&&) {
+@
+
+
+1.3
+log
+@-
+@
+text
+@d1 1
+a1 1
+// $Id: hello.cpp,v 1.2 2019-04-01 13:25:38-07 - - $
+d23 1
+d33 1
+@
+
+
+1.2
+log
+@-
+@
+text
+@d1 1
+a1 1
+// $Id: hello.cpp,v 1.1 2018-01-05 14:33:39-08 - - $
+d9 4
+d14 1
+a14 1
+   cout << this << "->hello::hello()" << endl;
+d18 1
+a18 1
+   cout << this << "->hello::hello (const hello&)" << endl;
+d22 1
+a22 1
+   cout << this << "->hello& hello::operator= (const hello&)" << endl;
+d27 1
+a27 1
+   cout << this << "->hello::hello (hello&&)" << endl;
+d31 1
+a31 1
+   cout << this << "->hello& hello::operator= (hello&&)" << endl;
+d36 1
+a36 1
+   cout << this << "->hello::~hello()" << endl;
+d40 2
+a41 1
+   cout << this << "->hello::hello (" << message << ")" << endl;
+d45 1
+@
+
+
+1.1
+log
+@-
+@
+text
+@d1 1
+a1 1
+// $Id: hello.cpp,v 1.1 2017-06-14 16:42:35-07 - - $
+d35 1
+a35 1
+hello::hello (const string& message): message(message) {
+@

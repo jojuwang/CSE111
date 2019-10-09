@@ -1,0 +1,1134 @@
+head	1.52;
+access;
+symbols;
+locks;
+comment	@.\" @;
+
+
+1.52
+date	2019.09.12.22.20.39;	author -;	state -;
+branches;
+next	1.51;
+
+1.51
+date	2019.09.11.20.01.35;	author -;	state -;
+branches;
+next	1.50;
+
+1.50
+date	2019.08.21.21.11.17;	author -;	state -;
+branches;
+next	1.49;
+
+1.49
+date	2019.06.26.19.09.51;	author -;	state -;
+branches;
+next	1.48;
+
+1.48
+date	2019.06.17.20.38.10;	author -;	state -;
+branches;
+next	1.47;
+
+1.47
+date	2019.06.15.01.30.54;	author -;	state -;
+branches;
+next	1.46;
+
+1.46
+date	2019.04.01.20.52.32;	author -;	state -;
+branches;
+next	1.45;
+
+1.45
+date	2019.04.01.20.51.40;	author -;	state -;
+branches;
+next	1.44;
+
+1.44
+date	2019.04.01.20.51.07;	author -;	state -;
+branches;
+next	1.43;
+
+1.43
+date	2019.04.01.20.49.52;	author -;	state -;
+branches;
+next	1.42;
+
+1.42
+date	2019.04.01.20.28.17;	author -;	state -;
+branches;
+next	1.41;
+
+1.41
+date	2019.04.01.20.27.59;	author -;	state -;
+branches;
+next	1.40;
+
+1.40
+date	2019.01.05.01.26.20;	author -;	state -;
+branches;
+next	1.39;
+
+1.39
+date	2019.01.04.01.11.46;	author -;	state -;
+branches;
+next	1.38;
+
+1.38
+date	2019.01.04.01.11.16;	author -;	state -;
+branches;
+next	1.37;
+
+1.37
+date	2019.01.03.23.58.19;	author -;	state -;
+branches;
+next	1.36;
+
+1.36
+date	2018.06.19.22.15.57;	author -;	state -;
+branches;
+next	1.35;
+
+1.35
+date	2018.06.19.22.15.24;	author -;	state -;
+branches;
+next	1.34;
+
+1.34
+date	2018.06.19.22.13.54;	author -;	state -;
+branches;
+next	1.33;
+
+1.33
+date	2018.06.19.22.12.08;	author -;	state -;
+branches;
+next	1.32;
+
+1.32
+date	2018.06.11.23.00.11;	author -;	state -;
+branches;
+next	1.31;
+
+1.31
+date	2018.06.11.22.58.44;	author -;	state -;
+branches;
+next	1.30;
+
+1.30
+date	2018.06.11.22.56.10;	author -;	state -;
+branches;
+next	1.29;
+
+1.29
+date	2018.04.25.20.22.02;	author -;	state -;
+branches;
+next	1.28;
+
+1.28
+date	2018.04.25.20.21.41;	author -;	state -;
+branches;
+next	1.27;
+
+1.27
+date	2018.04.25.20.19.32;	author -;	state -;
+branches;
+next	1.26;
+
+1.26
+date	2018.01.09.21.40.33;	author -;	state -;
+branches;
+next	1.25;
+
+1.25
+date	2018.01.09.21.40.17;	author -;	state -;
+branches;
+next	1.24;
+
+1.24
+date	2018.01.09.21.39.57;	author -;	state -;
+branches;
+next	1.23;
+
+1.23
+date	2018.01.09.21.38.24;	author -;	state -;
+branches;
+next	1.22;
+
+1.22
+date	2018.01.09.21.38.06;	author -;	state -;
+branches;
+next	1.21;
+
+1.21
+date	2018.01.09.21.37.30;	author -;	state -;
+branches;
+next	1.20;
+
+1.20
+date	2018.01.09.21.36.40;	author -;	state -;
+branches;
+next	1.19;
+
+1.19
+date	2018.01.09.21.35.28;	author -;	state -;
+branches;
+next	1.18;
+
+1.18
+date	2018.01.08.23.32.19;	author -;	state -;
+branches;
+next	1.17;
+
+1.17
+date	2018.01.08.23.31.37;	author -;	state -;
+branches;
+next	1.16;
+
+1.16
+date	2018.01.08.23.31.07;	author -;	state -;
+branches;
+next	1.15;
+
+1.15
+date	2018.01.08.23.30.31;	author -;	state -;
+branches;
+next	1.14;
+
+1.14
+date	2018.01.08.23.29.17;	author -;	state -;
+branches;
+next	1.13;
+
+1.13
+date	2018.01.06.00.33.34;	author -;	state -;
+branches;
+next	1.12;
+
+1.12
+date	2018.01.06.00.33.11;	author -;	state -;
+branches;
+next	1.11;
+
+1.11
+date	2018.01.06.00.32.49;	author -;	state -;
+branches;
+next	1.10;
+
+1.10
+date	2018.01.06.00.31.43;	author -;	state -;
+branches;
+next	1.9;
+
+1.9
+date	2018.01.06.00.04.08;	author -;	state -;
+branches;
+next	1.8;
+
+1.8
+date	2018.01.05.22.43.45;	author -;	state -;
+branches;
+next	1.7;
+
+1.7
+date	2018.01.05.22.43.12;	author -;	state -;
+branches;
+next	1.6;
+
+1.6
+date	2018.01.05.22.39.43;	author -;	state -;
+branches;
+next	1.5;
+
+1.5
+date	2018.01.05.22.39.11;	author -;	state -;
+branches;
+next	1.4;
+
+1.4
+date	2018.01.05.22.37.49;	author -;	state -;
+branches;
+next	1.3;
+
+1.3
+date	2018.01.05.22.36.35;	author -;	state -;
+branches;
+next	1.2;
+
+1.2
+date	2018.01.05.22.35.42;	author -;	state -;
+branches;
+next	1.1;
+
+1.1
+date	2018.01.05.22.35.16;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.52
+log
+@-
+@
+text
+@.so Tmac.mm-etc
+.if t .Newcentury-fonts
+.INITR* \n[.F]
+.SIZE 12 14
+.ds QUARTER Fall\~2019
+.ds SUFFIX f19
+.TITLE CSE-111 \*[QUARTER] Lab\~0 "Unix, C++, Makefile"
+.RCS "$Id: lab0-intro-unix.mm,v 1.51 2019-09-11 13:01:35-07 - - $"
+.PWD
+.URL
+.nr SHELLCNT 0 1
+.de COMMAND
+.   ft CR
+.   nop -bash-\\n+[SHELLCNT]$
+.   ft CB
+.   nop \\$*
+.   ft CR
+.   br
+.   nf
+.   tm \\$*
+.   pso \\$* | expand
+.   br
+.   ft R
+.   fi
+..
+This lab
+will not be graded and there
+is no credit for it.
+However, it is important you understand the Unix command
+line and submit procedure before you actually use it in the
+first assignment.
+.P
+Make sure you know how to submit files.
+Submit these files to
+.V= lab0 .
+Verify that the submit actually worked by looking
+in the submit directory for your username.
+The
+.V= find (1)
+command is very useful for things like this.
+.P
+The submit command copies your files into a directory
+.VTCODE* 1 /afs/cats.ucsc.edu/class/cse111-wm.\*[SUFFIX]/lab0/\[Do]USER
+and prefixes each file with a sequence number.
+You can see the names of the files, 
+but not their contents.
+The actual syntax of the 
+.V= submit
+command is\(::
+.VTCODE* 1 "submit cse111-wm.\*[SUFFIX] lab0 \fIfiles\|.\|.\|.\fP"
+.P
+.S +2 +2
+.E= "Prior experience with Unix is assumed."
+.P
+.S -2 -1
+It is assumed that you know the following\(::
+.ALX \[bu] 0 "" 0 0
+.LI
+The C language,
+from a prerequisite course.
+.LI
+Object-oriented programming, classes, and inheritance.
+.LI
+General use of Linux commands,
+and specifically
+.V= submit
+and
+.V= checksource .
+.LI
+Use of environment variables and setting the
+.V= \[Do]PATH
+variable.
+.LI
+Construction and use of
+.V= Makefile s.
+.LI
+A code archival system such as
+.V= rcs ,
+.V= cvs ,
+.V= svn ,
+.V= git ,
+etc.
+.LE
+.P
+Attend a lab section to ask questions if you don't
+understand how submit and the Unix command line in general works.
+The TA can explain such things.
+Also read the submit checklist\(::
+.V= Syllabus/submit-checklist .
+.P
+Be sure that any textbook or other reference to C++
+includes at least C++11 on its cover documentation,
+and preferably C++14,
+or possibly C++17.
+Books that discuss only C++98 should be considered obsolete.
+Whenever you need to look up information about C++,
+use Google,
+or look at
+The C++ Resources Network\(::
+.V= http://www.cplusplus.com/ .
+.P
+If you are doing development on your own computer,
+make sure that you are using the latest version of
+.V= g++
+or a newer version.
+Make sure that any code you develop compiles and runs on
+.V= unix.ucsc.edu ,
+since that is the only environment the graders will be using.
+If you are developing on your own system,
+make sure that the compiler you are using is C++14 compliant.
+.P
+.COMMAND which g++
+.COMMAND g++ --version | grep -i g++
+.P
+The subdirectory
+.V= code/
+shows a main program and a hello class and
+illustrates various features of
+C++ that will be covered later in the course.
+@
+
+
+1.51
+log
+@-
+@
+text
+@d6 1
+a6 1
+.ds SUFFIX u19
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.50 2019-08-21 14:11:17-07 - - $"
+@
+
+
+1.50
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.49 2019-06-26 12:09:51-07 - - $"
+a119 1
+.FINISH
+@
+
+
+1.49
+log
+@-
+@
+text
+@d5 1
+a5 1
+.ds QUARTER Summer\~2019
+d7 2
+a8 2
+.TITLE CMPS-109 \*[QUARTER] Lab\~0 "Unix, C++, Makefile"
+.RCS "$Id: lab0-intro-unix.mm,v 1.48 2019-06-17 13:38:10-07 - - $"
+d43 1
+a43 1
+.VTCODE* 1 /afs/cats.ucsc.edu/class/cmps109-wm.\*[SUFFIX]/lab0/\[Do]USER
+d50 1
+a50 1
+.VTCODE* 1 "submit cmps109-wm.\*[SUFFIX] lab0 \fIfiles\|.\|.\|.\fP"
+@
+
+
+1.48
+log
+@-
+@
+text
+@d6 1
+a6 1
+.ds SUFFIX s19
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.47 2019-06-14 18:30:54-07 - - $"
+@
+
+
+1.47
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.46 2019-04-01 13:52:32-07 - - $"
+d62 1
+a62 1
+Object-oriented programming, classes, and inheritance (probably Java).
+d119 1
+a119 1
+C++11, C++14, and C++17 that will be covered later in the course.
+@
+
+
+1.46
+log
+@-
+@
+text
+@d5 1
+a5 1
+.ds QUARTER Spring\~2019
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.45 2019-04-01 13:51:40-07 - - $"
+@
+
+
+1.45
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.44 2019-04-01 13:51:07-07 - - $"
+a12 1
+.   P
+d111 1
+@
+
+
+1.44
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.43 2019-04-01 13:49:52-07 - - $"
+d112 1
+@
+
+
+1.43
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.42 2019-04-01 13:28:17-07 - - $"
+d22 1
+a22 1
+.   pso \\$* | expand | groffify | fmt -80 -s
+@
+
+
+1.42
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.41 2019-04-01 13:27:59-07 - - $"
+d21 1
+@
+
+
+1.41
+log
+@-
+@
+text
+@d6 1
+a6 1
+.ds SUFFIX w19
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.40 2019-01-04 17:26:20-08 - - $"
+@
+
+
+1.40
+log
+@-
+@
+text
+@d5 1
+a5 1
+.ds QUARTER Winter\~2019
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.39 2019-01-03 17:11:46-08 - - $"
+@
+
+
+1.39
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.38 2019-01-03 17:11:16-08 - - $"
+d53 1
+a53 1
+.UL "\f[BI]Prior experience with Unix is assumed.\f[P]"
+@
+
+
+1.38
+log
+@-
+@
+text
+@d6 1
+a6 1
+.ds SUFFIX u18
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.37 2019-01-03 15:58:19-08 - - $"
+@
+
+
+1.37
+log
+@-
+@
+text
+@d5 1
+a5 3
+.af display-year I
+.nr display-year 2019
+.ds QUARTER Winter\~\n[display-year]
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.36 2018-06-19 15:15:57-07 - - $"
+@
+
+
+1.36
+log
+@-
+@
+text
+@d5 3
+a7 1
+.ds QUARTER Summer\~2018
+d10 1
+a10 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.35 2018-06-19 15:15:24-07 - - $"
+@
+
+
+1.35
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.34 2018-06-19 15:13:54-07 - - $"
+d78 4
+a81 4
+.V= RCS ,
+.V= CVS ,
+.V= SVN ,
+.V= GIT ,
+@
+
+
+1.34
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.33 2018-06-19 15:12:08-07 - - $"
+d81 1
+a81 1
+.V= git ,
+@
+
+
+1.33
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.32 2018-06-11 16:00:11-07 - - $"
+d39 1
+a39 1
+.V= findi (1)
+d47 4
+@
+
+
+1.32
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.31 2018-06-11 15:58:44-07 - - $"
+d77 1
+@
+
+
+1.31
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.30 2018-06-11 15:56:10-07 - - $"
+d106 1
+a106 1
+.COMMAND g++ --version | head -1
+@
+
+
+1.30
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.29 2018-04-25 13:22:02-07 - - $"
+a105 4
+If you use an IDE,
+be sure that it understands C++11.
+Some IDEs do not recognize all features of C++11 and C++14
+that did not appear in C++98.
+@
+
+
+1.29
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.28 2018-04-25 13:21:41-07 - - $"
+d58 1
+a58 1
+Object-oriented programming with classes (probably Java).
+@
+
+
+1.28
+log
+@-
+@
+text
+@d6 1
+a6 1
+.ds SUFFIX w18
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.27 2018-04-25 13:19:32-07 - - $"
+@
+
+
+1.27
+log
+@-
+@
+text
+@d5 1
+a5 1
+.ds QUARTER Winter\~2018
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.26 2018-01-09 13:40:33-08 - - $"
+@
+
+
+1.26
+log
+@-
+@
+text
+@d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.25 2018-01-09 13:40:17-08 - - $"
+d88 2
+a89 1
+and preferably C++14.
+@
+
+
+1.25
+log
+@-
+@
+text
+@d5 1
+a5 1
+.ds QUARTER Winter 2018
+d8 1
+a8 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.24 2018-01-09 13:39:57-08 - - $"
+@
+
+
+1.24
+log
+@-
+@
+text
+@d7 2
+a8 2
+.TITLE CMPS-109 \*[QUARTER] Lab\~0 "Introduction to Unix, C++, Makefile"
+.RCS "$Id: lab0-intro-unix.mm,v 1.23 2018-01-09 13:38:24-08 - - $"
+@
+
+
+1.23
+log
+@-
+@
+text
+@d5 4
+a8 2
+.TITLE CMPS-109 Lab\~0 "Introduction to Unix, C++, Makefile"
+.RCS "$Id: lab0-intro-unix.mm,v 1.22 2018-01-09 13:38:06-08 - - $"
+d43 1
+a43 1
+.VTCODE* 1 /afs/cats.ucsc.edu/class/cmps109-wm.w18/lab0/\[Do]USER
+@
+
+
+1.22
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.21 2018-01-09 13:37:30-08 - - $"
+a87 1
+.P
+@
+
+
+1.21
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.20 2018-01-09 13:36:40-08 - - $"
+d110 3
+a112 1
+This directory shows a main program and a hello class and
+@
+
+
+1.20
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.19 2018-01-09 13:35:28-08 - - $"
+d93 1
+a93 1
+.VTCODE* 1 http://www.cplusplus.com/
+@
+
+
+1.19
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.18 2018-01-08 15:32:19-08 - - $"
+d54 1
+a54 1
+as explained in a prerequisite course.
+@
+
+
+1.18
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.17 2018-01-08 15:31:37-08 - - $"
+d53 5
+d71 1
+a71 4
+Familiarity with the C language,
+as explained in a prerequisite course.
+.LI
+Familiarity with a code archival system such as
+@
+
+
+1.17
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.16 2018-01-08 15:31:07-08 - - $"
+d104 1
+a104 1
+Some IDEs do not recognize all features of C++11/C++14
+@
+
+
+1.16
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.15 2018-01-08 15:30:31-08 - - $"
+d104 2
+a105 2
+Some IDEs do not recognize features of C++11 that did not appear
+in C++98.
+@
+
+
+1.15
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.14 2018-01-08 15:29:17-08 - - $"
+d104 1
+a104 1
+Some IDEs will not compile features of C++11 that did not appear
+@
+
+
+1.14
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.13 2018-01-05 16:33:34-08 - - $"
+a101 2
+.COMMAND g++ --version | head -1
+.P
+d106 1
+@
+
+
+1.13
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.12 2018-01-05 16:33:11-08 - - $"
+d54 1
+a54 1
+and the 
+d57 1
+a57 2
+.V= checksource
+commands.
+@
+
+
+1.12
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.11 2018-01-05 16:32:49-08 - - $"
+d112 1
+a112 1
+C++11 and C++14 that will be covered later in the course.
+@
+
+
+1.11
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.10 2018-01-05 16:31:43-08 - - $"
+d58 1
+a58 1
+commands in particular.
+@
+
+
+1.10
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.9 2018-01-05 16:04:08-08 - - $"
+d56 3
+a58 1
+command in particular.
+d69 6
+@
+
+
+1.9
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.8 2018-01-05 14:43:45-08 - - $"
+d51 1
+a51 1
+.ALX a () "" 0
+@
+
+
+1.8
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.7 2018-01-05 14:43:12-08 - - $"
+d50 19
+@
+
+
+1.7
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.6 2018-01-05 14:39:43-08 - - $"
+d48 1
+a48 1
+.br
+a49 1
+.P
+@
+
+
+1.6
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.5 2018-01-05 14:39:11-08 - - $"
+d47 1
+a47 1
+.E= "Prior experience with Unix is assumed."
+@
+
+
+1.5
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.4 2018-01-05 14:37:49-08 - - $"
+d87 1
+@
+
+
+1.4
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.3 2018-01-05 14:36:35-08 - - $"
+d77 6
+a82 1
+.COMMAND g++ --version
+d86 1
+a86 1
+C++14 that will be covered later in the course.
+@
+
+
+1.3
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.2 2018-01-05 14:35:42-08 - - $"
+d70 1
+a70 2
+.V= g++ \(::
+.COMMAND g++ --version
+d77 1
+@
+
+
+1.2
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: lab0-intro-unix.mm,v 1.1 2018-01-05 14:35:16-08 - - $"
+a71 1
+.COMMAND g++ (GCC) 6.3.1 20170216 (Red Hat 6.3.1-3)
+@
+
+
+1.1
+log
+@-
+@
+text
+@d6 1
+a6 1
+.RCS "$Id: asg1-dc-bigint.mm,v 1.13 2017-12-14 11:32:29-08 - - $"
+d71 2
+a72 2
+.COMMAND g++ --version</TT>
+.COMMAND g++ (GCC) 6.3.1 20170216 (Red Hat 6.3.1-3)</TT>
+@
