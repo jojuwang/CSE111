@@ -15,12 +15,12 @@ using namespace std;
 class ubigint {
    friend ostream& operator<< (ostream&, const ubigint&);
    private:
-    // using unumber = unsigned long;
-    // unumber uvalue {};
+        using unumber = unsigned long;
+        unumber uvalue {};
 
-      using udigit_t = usigned char;
-      using ubigvalue_t = vector<udigit_t>;
-      ubigvalue_t ubig_value;
+     //  using udigit_t = usigned char;
+     // using ubigvalue_t = vector<udigit_t>;
+     // ubigvalue_t ubig_value;
    public:
       void multiply_by_2();
       void divide_by_2();

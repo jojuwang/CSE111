@@ -67,22 +67,6 @@ bool bigint::operator< (const bigint& that) const {
                       : uvalue < that.uvalue;
 }
 
-bool bigint::operator!= (const bigint& that) const {
-   return !(*this == that);
-}
-
-bool bigint::operator<= (const bigint& that) const{
-   return *this < that and *this == that;
-}
-
-bool bigint::operator>  (const bigint& that) const{
-   return !(*this < that) and !(*this == that);
-}
-
-bool bigint::operator>= (const bigint& that) const{
-   return *this > that and *this == that;
-}
-
 ostream& operator<< (ostream& out, const bigint& that) {
    return out << "bigint(" << (that.is_negative ? "-" : "+")
               << "," << that.uvalue << ")";
