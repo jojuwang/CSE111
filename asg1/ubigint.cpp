@@ -24,7 +24,7 @@ ubigint::ubigint (const string& that): ubig_value(0) {
       ubig_value[i] = digit - '0';
       i++;
    }
-   while (size() > 0 and back() == 0) pop_back();
+   while (ubig_value.size() > 0 and back() == 0) pop_back();
 }
 
 ubigint ubigint::operator+ (const ubigint& that) const {
@@ -38,7 +38,7 @@ ubigint ubigint::operator- (const ubigint& that) const {
 }
 
 ubigint ubigint::operator* (const ubigint& that) const {
-   return ubigint (uvalue * that.uvalue);
+  return ubigint (uvalue * that.uvalue);
 }
 
 void ubigint::multiply_by_2() {
