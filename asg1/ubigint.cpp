@@ -16,19 +16,22 @@ ubigint::ubigint (unsigned char that): ubig_value (that) {
 
 ubigint::ubigint (const string& that): ubig_value(0) {
    DEBUGF ('~', "that = \"" << that << "\"");
-   int i = 0;
-   for (char digit: that) {
-      if (not isdigit (digit)) {
+   for (auto i = that.begin(); i <= that.end(); ++i){
+      if (not isdigit (i)) {
          throw invalid_argument ("ubigint::ubigint(" + that + ")");
       }
       ubig_value[i] = digit - '0';
-      i++;
    }
    while (ubig_value.size() > 0 and back() == 0) pop_back();
 }
 
 ubigint ubigint::operator+ (const ubigint& that) const {
    int carry = 0;
+   for (auto i = this.begin(); i <= this.end; ++i){
+   	   for (auto j = that.begin(); j = that.end(); ++j){
+   	   	   
+   	   }
+   }
    return ubigint (uvalue + that.uvalue);
 }
 
