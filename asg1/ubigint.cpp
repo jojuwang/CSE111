@@ -20,19 +20,26 @@ ubigint::ubigint (const string& that): ubig_value(0) {
       if (not isdigit (i)) {
          throw invalid_argument ("ubigint::ubigint(" + that + ")");
       }
-      ubig_value[i] = digit - '0';
+      ubig_value.push_back(i - '0');
    }
-   while (ubig_value.size() > 0 and back() == 0) pop_back();
+   while (ubig_value.size() > 0 and back() == 0) ubig_value.pop_back();
 }
 
 ubigint ubigint::operator+ (const ubigint& that) const {
    int carry = 0;
-   for (auto i = this.begin(); i <= this.end; ++i){
-   	   for (auto j = that.begin(); j = that.end(); ++j){
-   	   	   
-   	   }
+   int sum = 0;
+   ubigint result {};
+   for (int i = 0; i <= this.size(); i++){
+      sum = this[i] + that[i] + carry;
+      if (sum >= 10){
+         while (sum >= 10){
+            sum -= 10;
+            carry += 1;
+         }
+      }
+      result.push_back(sum);
    }
-   return ubigint (uvalue + that.uvalue);
+   return result;
 }
 
 ubigint ubigint::operator- (const ubigint& that) const {
