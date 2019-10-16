@@ -1,4 +1,4 @@
-// $Id: ubigint.h,v 1.11 2016-03-24 19:43:57-07 - - $
+// $Id: ubigint.h,v 1.1 2019-10-15 19:34:36-07 - - $
 
 #ifndef __UBIGINT_H__
 #define __UBIGINT_H__
@@ -7,6 +7,7 @@
 #include <iostream>
 #include <limits>
 #include <utility>
+#include <vector>
 using namespace std;
 
 #include "debug.h"
@@ -18,7 +19,7 @@ class ubigint {
    //  using unumber = unsigned long;
    //   unumber uvalue {};
 
-      using udigit_t = usigned char;
+      using udigit_t = unsigned char;
       using ubigvalue_t = vector<udigit_t>;
       ubigvalue_t ubig_value;
    public:

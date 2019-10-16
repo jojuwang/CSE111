@@ -10,53 +10,77 @@ using namespace std;
 #include "ubigint.h"
 #include "debug.h"
 
-ubigint::ubigint (unsigned char that): ubig_value (that) {
-   DEBUGF ('~', this << " -> " << ubig_value)
+ubigint::ubigint (unsigned long that) {
+   DEBUGF ('~', this << " -> " << *this);
+   (void) that;
 }
 
-ubigint::ubigint (const string& that): ubig_value(0) {
+ubigint::ubigint (const string& that) {
    DEBUGF ('~', "that = \"" << that << "\"");
    for (auto i = that.begin(); i <= that.end(); ++i){
-      if (not isdigit (i)) {
+      if (not isdigit (*i)) {
          throw invalid_argument ("ubigint::ubigint(" + that + ")");
       }
-      ubig_value.push_back(i - '0');
+      char digit = *i - '0';
+      ubig_value.push_back(digit);
    }
-   while (ubig_value.size() > 0 and back() == 0) ubig_value.pop_back();
+   while (ubig_value.size() > 0 and ubig_value.back() == 0) ubig_value.pop_back();
 }
 
-ubigint ubigint::operator+ (const ubigint& that) const {
-   int carry = 0;
+ubigint ubigint::operator+ (const ubigint& that) const { // Why can't i make this work?  Why am I not understanding anything?  I've sacrificed so much time from my other classes for nothing... Should I cut my losses and just submit what I have?
    int sum = 0;
+   int carry = 0;
    ubigint result {};
-   for (int i = 0; i <= this.size(); i++){
-      sum = this[i] + that[i] + carry;
-      if (sum >= 10){
-         while (sum >= 10){
-            sum -= 10;
-            carry += 1;
-         }
+   int max_dig = max(this->ubig_value.size(), that.ubig_value.size());
+   if (this->ubig_value.size() < that.ubig_value.size()){
+     for (unsigned n = 0; n < that.ubig_value.size() - this->ubig_value.size(); n++){
+         //this->ubig_value.push_back('0');
       }
-      result.push_back(sum);
+   } else if (this->ubig_value.size() > that.ubig_value.size()){
+     for (unsigned n = 0; n < this->ubig_value.size() - that.ubig_value.size(); n++){
+         //that.ubig_value.push_back('0');
+      }
    }
+   for (int i = 0; i < max_dig; i++){
+      sum = this->ubig_value[i] + that.ubig_value[i] + carry;
+      carry = sum / 10;
+      sum = sum % 10;
+      result.ubig_value.push_back(sum);
+   }
+   result.ubig_value.push_back(carry);
+   while (result.ubig_value.size() > 0 and result.ubig_value.back() == 0) result.ubig_value.pop_back();
    return result;
 }
 
 ubigint ubigint::operator- (const ubigint& that) const {
    if (*this < that) throw domain_error ("ubigint::operator-(a<b)");
-   return ubigint (uvalue - that.uvalue);
+   int diff = 0;
+   //int borrow = 0;
+   ubigint result {};
+   for (unsigned i = 0; i <= that.ubig_value.size(); i++){
+      //this->ubig_value[i] -= borrow;
+     if (this->ubig_value[i] < that.ubig_value[i]){
+       //this->ubig_value[i] += 10;
+       // subtract next block by 1.  But what if that value is 0?
+     }
+     diff = ubig_value[i] - that.ubig_value[i];
+     result.ubig_value.push_back(diff);
+   }
+   return result;
 }
 
 ubigint ubigint::operator* (const ubigint& that) const {
-  return ubigint (uvalue * that.uvalue);
+  ubigint result {};
+  //return ubigint (uvalue * that.uvalue);
+  return that;
 }
 
 void ubigint::multiply_by_2() {
-   uvalue *= 2;
+  //uvalue *= 2;
 }
 
 void ubigint::divide_by_2() {
-   uvalue /= 2;
+  //ubig_value /= 2;
 }
 
 
@@ -93,14 +117,20 @@ ubigint ubigint::operator% (const ubigint& that) const {
 }
 
 bool ubigint::operator== (const ubigint& that) const {
-   return uvalue == that.uvalue;
+  //return uvalue == that.uvalue;
+  (void) that;
+  return false;
 }
 
 bool ubigint::operator< (const ubigint& that) const {
-   return uvalue < that.uvalue;
+  //return uvalue < that.uvalue;
+  (void) that;
+  return false;
 }
 
 ostream& operator<< (ostream& out, const ubigint& that) { 
-   return out << "ubigint(" << that.uvalue << ")";
+  //return out << "ubigint(" << that.uvalue << ")";
+  (void) that;
+  return out;
 }
 

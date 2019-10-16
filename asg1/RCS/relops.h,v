@@ -1,4 +1,26 @@
-// $Id: relops.h,v 1.1 2019-10-15 19:34:36-07 - - $
+head	1.1;
+access;
+symbols;
+locks;
+comment	@ * @;
+
+
+1.1
+date	2019.10.16.02.34.36;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@-
+@
+text
+@// $Id: relops.h,v 1.2 2016-06-13 13:47:33-07 - - $
 
 //
 // Assuming that for any given type T, there are operators
@@ -33,3 +55,4 @@ inline bool operator>= (const value& left, const value& right) {
 
 #endif
 
+@

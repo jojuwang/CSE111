@@ -1,4 +1,26 @@
-// $Id: ubigint.cpp,v 1.16 2019-04-02 16:28:42-07 - - $
+head	1.1;
+access;
+symbols;
+locks;
+comment	@// @;
+
+
+1.1
+date	2019.10.16.02.34.36;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@-
+@
+text
+@// $Id: ubigint.cpp,v 1.16 2019-04-02 16:28:42-07 - - $
 
 #include <cctype>
 #include <cstdlib>
@@ -10,11 +32,12 @@ using namespace std;
 #include "ubigint.h"
 #include "debug.h"
 
-ubigint::ubigint (unsigned char that): ubig_value (that) {
-   DEBUGF ('~', this << " -> " << ubig_value)
+ubigint::ubigint (unsigned long that) {
+   DEBUGF ('~', this << " -> " << *this);
+   (void) that;
 }
 
-ubigint::ubigint (const string& that): ubig_value(0) {
+ubigint::ubigint (const string& that) {
    DEBUGF ('~', "that = \"" << that << "\"");
    for (auto i = that.begin(); i <= that.end(); ++i){
       if (not isdigit (*i)) {
@@ -26,42 +49,44 @@ ubigint::ubigint (const string& that): ubig_value(0) {
    while (ubig_value.size() > 0 and ubig_value.back() == 0) ubig_value.pop_back();
 }
 
-ubigint ubigint::operator+ (const ubigint& that) const {
+ubigint ubigint::operator+ (const ubigint& that) const { // Why can't i make this work?  Why am I not understanding anything?  I've sacrificed so much time from my other classes for nothing... Should I cut my losses and just submit what I have?
    int sum = 0;
    int carry = 0;
    ubigint result {};
-   int max_dig = max(this->ubig_value.size(), that->ubig_value.size());
-   if (*this->ubig_value.size() < that->ubig_value.size()){
-      for (int n = 0; n < that->ubig_value.size() - *this->ubig_value.size(); n++){
-         *this->ubig_value.push_back(0);
+   int max_dig = max(this->ubig_value.size(), that.ubig_value.size());
+   if (this->ubig_value.size() < that.ubig_value.size()){
+     for (unsigned n = 0; n < that.ubig_value.size() - this->ubig_value.size(); n++){
+         //this->ubig_value.push_back('0');
       }
-   } else if (*this->ubig_value.size() > that->ubig_value.size()){
-      for (int n = 0; n < *this->ubig_value.size() - that->ubig_value.size(); n++){
-         that->ubig_value.push_back(0);
+   } else if (this->ubig_value.size() > that.ubig_value.size()){
+     for (unsigned n = 0; n < this->ubig_value.size() - that.ubig_value.size(); n++){
+         //that.ubig_value.push_back('0');
       }
    }
    for (int i = 0; i < max_dig; i++){
-      sum = *this->ubig_value[i] + that->ubig_value[i] + carry;
+      sum = this->ubig_value[i] + that.ubig_value[i] + carry;
       carry = sum / 10;
       sum = sum % 10;
-      result->ubig_value.push_back(sum);
+      result.ubig_value.push_back(sum);
    }
-   result->ubig_value.push_back(carry);
-   while (result->ubig_value.size() > 0 and result->ubig_value.back() == 0) result->ubig_value.pop_back();
+   result.ubig_value.push_back(carry);
+   while (result.ubig_value.size() > 0 and result.ubig_value.back() == 0) result.ubig_value.pop_back();
    return result;
 }
 
 ubigint ubigint::operator- (const ubigint& that) const {
    if (*this < that) throw domain_error ("ubigint::operator-(a<b)");
    int diff = 0;
+   //int borrow = 0;
    ubigint result {};
-   for (int i = 0; i <= that.size(); i++){
-     if (*this[i] < that[i]){
-       *this[i] += 10;
+   for (unsigned i = 0; i <= that.ubig_value.size(); i++){
+      //this->ubig_value[i] -= borrow;
+     if (this->ubig_value[i] < that.ubig_value[i]){
+       //this->ubig_value[i] += 10;
        // subtract next block by 1.  But what if that value is 0?
      }
-     diff = *this[i] - that[i];
-     result.push_back(diff);
+     diff = ubig_value[i] - that.ubig_value[i];
+     result.ubig_value.push_back(diff);
    }
    return result;
 }
@@ -69,14 +94,15 @@ ubigint ubigint::operator- (const ubigint& that) const {
 ubigint ubigint::operator* (const ubigint& that) const {
   ubigint result {};
   //return ubigint (uvalue * that.uvalue);
+  return that;
 }
 
 void ubigint::multiply_by_2() {
-  uvalue *= 2;
+  //uvalue *= 2;
 }
 
 void ubigint::divide_by_2() {
-  ubig_value /= 2;
+  //ubig_value /= 2;
 }
 
 
@@ -114,19 +140,26 @@ ubigint ubigint::operator% (const ubigint& that) const {
 
 bool ubigint::operator== (const ubigint& that) const {
   //return uvalue == that.uvalue;
+  (void) that;
+  return false;
 }
 
 bool ubigint::operator< (const ubigint& that) const {
   //return uvalue < that.uvalue;
+  (void) that;
+  return false;
 }
 
-bool ubigint::operator<= (const ubigint& that) const {
-   return this < that and this == that;
-}
+//bool ubigint::operator<= (const ubigint& that) const {
+//   return this < that and this == that;
+//}
 
 
 
 ostream& operator<< (ostream& out, const ubigint& that) { 
   //return out << "ubigint(" << that.uvalue << ")";
+  (void) that;
+  return out;
 }
 
+@

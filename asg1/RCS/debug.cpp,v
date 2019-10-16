@@ -1,4 +1,26 @@
-// $Id: debug.cpp,v 1.1 2019-10-15 19:34:36-07 - - $
+head	1.1;
+access;
+symbols;
+locks;
+comment	@// @;
+
+
+1.1
+date	2019.10.16.02.34.36;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@-
+@
+text
+@// $Id: debug.cpp,v 1.12 2019-08-22 17:00:57-07 - - $
 
 #include <climits>
 #include <iostream>
@@ -13,7 +35,7 @@ debugflags::flagset debugflags::flags {};
 
 void debugflags::setflags (const string& initflags) {
    for (const unsigned char flag: initflags) {
-      if (flag == '@') flags.set();
+      if (flag == '@@') flags.set();
                   else flags.set (flag, true);
    }
 }
@@ -33,3 +55,4 @@ void debugflags::where (char flag, const char* file, int line,
         << "   " << pretty_function << endl;
 }
 
+@

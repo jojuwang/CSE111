@@ -1,4 +1,26 @@
-// $Id: bigint.h,v 1.1 2019-10-15 19:34:36-07 - - $
+head	1.1;
+access;
+symbols;
+locks;
+comment	@ * @;
+
+
+1.1
+date	2019.10.16.02.34.36;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@-
+@
+text
+@// $Id: bigint.h,v 1.29 2016-03-24 19:30:57-07 - - $
 
 #ifndef __BIGINT_H__
 #define __BIGINT_H__
@@ -45,3 +67,4 @@ class bigint {
 
 #endif
 
+@

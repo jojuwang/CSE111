@@ -1,4 +1,4 @@
-// $Id: libfns.h,v 1.2 2015-07-02 16:03:36-07 - - $
+// $Id: libfns.h,v 1.1 2019-10-15 19:34:36-07 - - $
 
 // Library functions not members of any class.
 

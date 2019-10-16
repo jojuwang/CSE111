@@ -1,4 +1,26 @@
-// $Id: iterstack.h,v 1.1 2019-10-15 19:34:36-07 - - $
+head	1.1;
+access;
+symbols;
+locks;
+comment	@ * @;
+
+
+1.1
+date	2019.10.16.02.34.36;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@-
+@
+text
+@// $Id: iterstack.h,v 1.13 2014-06-26 17:21:55-07 - - $
 
 // 
 // The class std::stack does not provide an iterator, which is
@@ -47,3 +69,4 @@ class iterstack: private vector<value_type> {
 
 #endif
 
+@

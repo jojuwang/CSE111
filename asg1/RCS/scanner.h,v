@@ -1,4 +1,26 @@
-// $Id: scanner.h,v 1.1 2019-10-15 19:34:36-07 - - $
+head	1.1;
+access;
+symbols;
+locks;
+comment	@ * @;
+
+
+1.1
+date	2019.10.16.02.34.36;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@-
+@
+text
+@// $Id: scanner.h,v 1.13 2019-04-01 18:13:04-07 - - $
 
 #ifndef __SCANNER_H__
 #define __SCANNER_H__
@@ -35,3 +57,4 @@ ostream& operator<< (ostream&, const token&);
 
 #endif
 
+@

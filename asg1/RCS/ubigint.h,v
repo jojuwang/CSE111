@@ -1,4 +1,26 @@
-// $Id: ubigint.h,v 1.11 2016-03-24 19:43:57-07 - - $
+head	1.1;
+access;
+symbols;
+locks;
+comment	@ * @;
+
+
+1.1
+date	2019.10.16.02.34.36;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@-
+@
+text
+@// $Id: ubigint.h,v 1.11 2016-03-24 19:43:57-07 - - $
 
 #ifndef __UBIGINT_H__
 #define __UBIGINT_H__
@@ -42,3 +64,4 @@ class ubigint {
 
 #endif
 
+@
