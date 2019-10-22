@@ -11,7 +11,7 @@ using namespace std;
 #include "relops.h"
 
 bigint::bigint (long that): uvalue (that), is_negative (that < 0) {
-   DEBUGF ('~', this << " -> " << uvalue)
+   DEBUGF ('~', this << " -> " << uvalue);
 }
 
 bigint::bigint (const ubigint& uvalue_, bool is_negative_):
@@ -32,18 +32,54 @@ bigint bigint::operator- () const {
 }
 
 bigint bigint::operator+ (const bigint& that) const {
-   ubigint result = uvalue + that.uvalue;
-   return result;
+   //ubigint result = uvalue + that.uvalue;
+   //return result;
+   ubigint result {};
+   if (is_negative == that.is_negative){
+      result = uvalue + that.uvalue;
+      return {result, is_negative};
+   } else {
+      if ( uvalue < that.uvalue ){
+         result = that.uvalue - uvalue;
+         return {result, that.is_negative};
+      } else {
+         result = uvalue - that.uvalue;
+         return {result, is_negative};
+      }
+   }
+   //return {result, that.is_negative};
 }
 
 bigint bigint::operator- (const bigint& that) const {
-   ubigint result = uvalue - that.uvalue;
-   return result;
+  /*ubigint result = uvalue - that.uvalue;
+    return result;*/
+   ubigint result{};
+   if (is_negative != that.is_negative){
+      result = uvalue + that.uvalue;
+      return {result, is_negative};
+   } else {
+     /*result = uvalue + that.uvalue;
+       return {result, is_negative};*/
+     if (uvalue >= that.uvalue){
+       result = uvalue - that.uvalue;
+       return {result, is_negative};
+     } else {
+       result = that.uvalue - uvalue;
+       return {result, not is_negative};
+     }
+   }
 }
 
 
 bigint bigint::operator* (const bigint& that) const {
-   bigint result = uvalue * that.uvalue;
+  /*bigint result = uvalue * that.uvalue;
+    return result;*/
+   bigint result;
+   if (is_negative == that.is_negative){
+     result = {uvalue * that.uvalue, false};
+   } else {
+     result = {uvalue * that.uvalue, true};
+   }
    return result;
 }
 
@@ -67,24 +103,13 @@ bool bigint::operator< (const bigint& that) const {
                       : uvalue < that.uvalue;
 }
 
-bool bigint::operator!= (const bigint& that) const {
-   return !(*this == that);
-}
-
-bool bigint::operator<= (const bigint& that) const{
-   return *this < that and *this == that;
-}
-
-bool bigint::operator>  (const bigint& that) const{
-   return !(*this < that) and !(*this == that);
-}
-
-bool bigint::operator>= (const bigint& that) const{
-   return *this > that and *this == that;
-}
-
 ostream& operator<< (ostream& out, const bigint& that) {
-   return out << "bigint(" << (that.is_negative ? "-" : "+")
-              << "," << that.uvalue << ")";
+  /* return out << "bigint(" << (that.is_negative ? "-" : "+")
+     << "," << that.uvalue << ")";*/
+   if (that.is_negative == true){
+      out << "-";
+   }
+   out << that.uvalue;
+   return out;
 }
 

@@ -12,12 +12,16 @@ using namespace std;
 
 ubigint::ubigint (unsigned long that) {
    DEBUGF ('~', this << " -> " << *this);
-   (void) that;
+   //(void) that;
+   while (that != 0){
+     ubig_value.push_back(that % 10);
+     that /= 10;
+   }
 }
 
 ubigint::ubigint (const string& that) {
    DEBUGF ('~', "that = \"" << that << "\"");
-   for (auto i = that.begin(); i <= that.end(); ++i){
+   for (auto i = that.rbegin(); i != that.rend(); ++i){
       if (not isdigit (*i)) {
          throw invalid_argument ("ubigint::ubigint(" + that + ")");
       }
@@ -27,18 +31,18 @@ ubigint::ubigint (const string& that) {
    while (ubig_value.size() > 0 and ubig_value.back() == 0) ubig_value.pop_back();
 }
 
-ubigint ubigint::operator+ (const ubigint& that) const { // Why can't i make this work?  Why am I not understanding anything?  I've sacrificed so much time from my other classes for nothing... Should I cut my losses and just submit what I have?
+ubigint ubigint::operator+ (const ubigint& that) const {
    unsigned sum = 0;
    unsigned carry = 0;
    unsigned left_op = 0;
    unsigned right_op = 0;
    ubigint result {};
-   unsigned max_dig = max(this->ubig_value.size(), that.ubig_value.size());
+   unsigned max_dig = max(ubig_value.size(), that.ubig_value.size());
    for (unsigned i = 0; i < max_dig; i++){
-      if (i > ubig_value.size() - 1){
+      if (i >=ubig_value.size()    ){
          left_op = 0;
          right_op = that.ubig_value[i];
-      } else if (i > that.ubig_value.size() - 1){
+      } else if (i >=that.ubig_value.size()    ){
          left_op = ubig_value[i];
          right_op = 0;
       } else {
@@ -56,16 +60,20 @@ ubigint ubigint::operator+ (const ubigint& that) const { // Why can't i make thi
 }
 
 ubigint ubigint::operator- (const ubigint& that) const {
-   if (*this < that) throw domain_error ("ubigint::operator-(a<b)");
-   unsigned diff = 0;
+  if (*this < that) throw domain_error ("ubigint::operator-(a<b)");
+  /*if (ubig_value.size() < that.ubig_value.size()){
+    throw domain_error ("ubigint::operator-(a<b>");
+    }*/
+   int diff = 0;
    unsigned borrow = 0;
-   unsigned left_op = 0;
-   unsigned right_op = 0;
+   int left_op = 0;
+   int right_op = 0;
    ubigint result {};
-   for (unsigned i = 0; i <= that.ubig_value.size(); i++){
+   for (unsigned i = 0; i < ubig_value.size(); i++){
       //this->ubig_value[i] -= borrow;
-      left_op = ubig_value[i];
-      if (i > that.ubig_value.size() - 1){
+      left_op = ubig_value[i] - borrow;
+
+      if (i >= that.ubig_value.size()){
          right_op = 0;
       } else {
          right_op = that.ubig_value[i];
@@ -90,9 +98,9 @@ ubigint ubigint::operator* (const ubigint& that) const {
    for (unsigned n = 0; n < (ubig_value.size() + that.ubig_value.size()); n++){
       result.ubig_value.push_back(0);
    }
-   for (unsigned i = 0; i <= ubig_value.size(); i++){
+   for (unsigned i = 0; i < ubig_value.size(); i++){
       carry = 0;
-      for (unsigned j = 0; j <= that.ubig_value.size(); j++){
+      for (unsigned j = 0; j < that.ubig_value.size(); j++){
          d = result.ubig_value[i+j] + ubig_value[i]*that.ubig_value[j] + carry;
          result.ubig_value[i+j] = d % 10;
          carry = d / 10;
@@ -106,10 +114,29 @@ ubigint ubigint::operator* (const ubigint& that) const {
 
 void ubigint::multiply_by_2() {
   //uvalue *= 2;
+  unsigned carry = 0;
+  unsigned d = 0;
+  for (unsigned i = 0; i < ubig_value.size(); i++){
+    //carry = 0;
+    d = ubig_value[i] * 2 + carry;
+    ubig_value[i] = d % 10;
+    carry = d / 10;
+  }
+  ubig_value.push_back(carry);
+  while (ubig_value.size() > 0 and ubig_value.back() == 0) ubig_value.pop_back();
 }
 
 void ubigint::divide_by_2() {
   //ubig_value /= 2;
+  int c = 0;
+  for (unsigned i = 0; i < ubig_value.size(); i++){
+    c = ubig_value[i] / 2;
+    if ( (i + 1) < ubig_value.size() && ubig_value[i+1] % 2 == 1 ){
+      c += 5;
+    }
+    ubig_value[i] = c;
+  }
+  while (ubig_value.size() > 0 and ubig_value.back() == 0) ubig_value.pop_back();
 }
 
 
@@ -149,8 +176,8 @@ bool ubigint::operator== (const ubigint& that) const {
    if (ubig_value.size() != that.ubig_value.size()){
       return false;
    } else {
-      for (unsigned i = 0; i < ubig_value.size(); i++){
-         if (ubig_value[i] != that.ubig_value[i]){
+     for (unsigned i = ubig_value.size(); i >= 1; i--){
+         if (ubig_value[i-1] != that.ubig_value[i-1]){
             return false;
          }
       }
@@ -165,19 +192,31 @@ bool ubigint::operator< (const ubigint& that) const {
    } else if (ubig_value.size() < that.ubig_value.size()){
       return true;
    } else {
-      for (unsigned i = 0; i < ubig_value.size(); i++){
-         if (ubig_value[i] > that.ubig_value[i]){
+     for (unsigned i = ubig_value.size(); i >= 1; i--){
+         if (ubig_value[i-1] > that.ubig_value[i-1]){
             return false;
          }
+	 if (ubig_value[i-1] < that.ubig_value[i-1]){
+	    return true;
+	 }
       }
    }
-  //(void) that;
-  return true;
+  return false;
 }
 
 ostream& operator<< (ostream& out, const ubigint& that) { 
-  //return out << "ubigint(" << that.uvalue << ")";
-  (void) that;
+  /*for (unsigned i = 0; i < that.ubig_value.size(); i++){
+    out << static_cast<char>(that.ubig_value[i] + '0');
+    }*/
+  int n = 0;
+  for (unsigned i = that.ubig_value.size(); i >= 1; i--){
+    out << static_cast<char>(that.ubig_value[i-1] + '0');
+    n++;
+    if (n >= 69){
+      out << "\\\n";
+      n = 0;
+    }
+  }
   return out;
 }
 

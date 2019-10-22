@@ -10,11 +10,12 @@ export PATH=$PATH:/afs/cats.ucsc.edu/courses/cse110a-wm/bin
 ulimit -f 32
 ulimit -t 120
 
-PROG=-/cse111/asg1/ydc
+PROG=../ydc
 GRIND="valgrind --leak-check=full --show-reachable=yes"
 
 for test in test[0-9]-*.ydc
 do
+   echo $test
    $PROG <$test 1>$test.ydc.out 2>$test.ydc.err
    echo status = $? >$test.status
    diff $test.ydc.out $test.dc.out >$test.out.diffs
