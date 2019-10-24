@@ -26,11 +26,21 @@ ostream& operator<< (ostream& out, file_type type) {
 }
 
 inode_state::inode_state() {
+   root = make_shared<inode>(file_type::DIRECTORY_TYPE);
+   cwd = root;
+   root->contents->insert_into_dirents(".", root);
+   root->contents->insert_into_dirents("..", root);
    DEBUGF ('i', "root = " << root << ", cwd = " << cwd
           << ", prompt = \"" << prompt() << "\"");
 }
 
 const string& inode_state::prompt() const { return prompt_; }
+
+/*inode_state::~inode_state() {
+   cwd = nullptr;
+   if (root) root->disown();
+   root = nullptr;
+}*/
 
 ostream& operator<< (ostream& out, const inode_state& state) {
    out << "inode_state: root = " << state.root
@@ -80,6 +90,10 @@ inode_ptr base_file::mkfile (const string&) {
    throw file_error ("is a " + error_file_type());
 }
 
+void base_file::insert_into_dirents (const string&, inode_ptr){
+   throw file_error ("is a " + error_file_type());
+}
+
 
 size_t plain_file::size() const {
    size_t size {0};
@@ -108,11 +122,44 @@ void directory::remove (const string& filename) {
 
 inode_ptr directory::mkdir (const string& dirname) {
    DEBUGF ('i', dirname);
+   inode_ptr self = dirents["."];
+   inode_ptr parent = dirents[".."];
+   for (auto iter = dirents.begin(); iter != dirents.end(); ++iter){
+      auto myPair = *iter;
+      cout << myPair.first << endl;
+      inode_ptr ptr2 = myPair.second;
+   }
    return nullptr;
 }
 
 inode_ptr directory::mkfile (const string& filename) {
    DEBUGF ('i', filename);
+   //...
+   /*inode_ptr owner_this = dirents["."];
+   newDir->dirents[".."] = owner_this;*/
    return nullptr;
 }
+
+void directory::insert_into_dirents (const string& key,
+                                      inode_ptr value) {
+   dirents[key] = value;
+}
+
+/*void inode::disown() {
+   dir_ptr dir = dynamic_pointer_cast<directory>(contents);
+   contents->disown();
+   contents = nullptr;
+}
+
+void directory::disown() {
+   for (auto iter = dirents.begin(); iter != dirents.end(); ){
+      if (iter->first == "." || iter->first == ".."){
+         // do something
+      } else {
+         // do something
+      }
+      dirents.erase(iter++);
+      iter++;
+   }
+}*/
 

@@ -57,7 +57,7 @@ class inode_state {
 //    number of words.
 //    
 
-class inode {
+class inode: public enable_shared_from_this<inode> {
    friend class inode_state;
    private:
       static int next_inode_nr;
@@ -66,6 +66,7 @@ class inode {
    public:
       inode (file_type);
       int get_inode_nr() const;
+      void disown();
 };
 
 
@@ -93,6 +94,8 @@ class base_file {
       virtual void remove (const string& filename);
       virtual inode_ptr mkdir (const string& dirname);
       virtual inode_ptr mkfile (const string& filename);
+      virtual void insert_into_dirents(const string&, inode_ptr);
+      //virtual void disown();
 };
 
 // class plain_file -
@@ -146,6 +149,8 @@ class directory: public base_file {
       virtual void remove (const string& filename) override;
       virtual inode_ptr mkdir (const string& dirname) override;
       virtual inode_ptr mkfile (const string& filename) override;
+      void insert_into_dirents(const string&, inode_ptr) override;
+      //virtual void disown();
 };
 
 #endif
