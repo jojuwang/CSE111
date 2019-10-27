@@ -37,11 +37,16 @@ class inode_state {
       inode_ptr root {nullptr};
       inode_ptr cwd {nullptr};
       string prompt_ {"% "};
+      vector<string> path{};
    public:
       inode_state (const inode_state&) = delete; // copy ctor
       inode_state& operator= (const inode_state&) = delete; // op=
       inode_state();
+      ~inode_state();
       const string& prompt() const;
+      void set_prompt(string s);
+      const vector<string> get_path();
+      
 };
 
 // class inode -
@@ -95,7 +100,7 @@ class base_file {
       virtual inode_ptr mkdir (const string& dirname);
       virtual inode_ptr mkfile (const string& filename);
       virtual void insert_into_dirents(const string&, inode_ptr);
-      //virtual void disown();
+      virtual void disown();
 };
 
 // class plain_file -

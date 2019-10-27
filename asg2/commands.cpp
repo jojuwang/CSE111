@@ -85,22 +85,21 @@ void fn_mkdir (inode_state& state, const wordvec& words){
 void fn_prompt (inode_state& state, const wordvec& words){
    DEBUGF ('c', state);
    DEBUGF ('c', words);
-   state.prompt_ = words.at(1);
+   //state.prompt_ = words.at(1);
 }
 
 void fn_pwd (inode_state& state, const wordvec& words){
    DEBUGF ('c', state);
    DEBUGF ('c', words);
-   cout << "/"; // dummy
-   vector<inode_ptr> trace{};
-   vector<string> path{};
-   while (/*state.cwd.*/dirents[".."] != state.root){
-      
+   vector<string> result = state.get_path();
+   if (result.size() == 0){
+      cout << "/";
+   } else {
+      for (unsigned i = 0; i < result.size(); i++){
+         cout<< result[i];
+      }
    }
-   for (auto iter = state.cwd.dirents.begin(); iter != state.cwd.dirents.end(); ++iter){
-      
-   }
-   
+   cout << endl;
 }
 
 void fn_rm (inode_state& state, const wordvec& words){

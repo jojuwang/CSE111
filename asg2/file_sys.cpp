@@ -36,11 +36,19 @@ inode_state::inode_state() {
 
 const string& inode_state::prompt() const { return prompt_; }
 
-/*inode_state::~inode_state() {
+void inode_state::set_prompt(string s) {
+   prompt_ = s;
+}
+
+const vector<string> inode_state::get_path() {
+   return path;
+}
+
+inode_state::~inode_state() {
    cwd = nullptr;
    if (root) root->disown();
    root = nullptr;
-}*/
+}
 
 ostream& operator<< (ostream& out, const inode_state& state) {
    out << "inode_state: root = " << state.root
@@ -145,13 +153,15 @@ void directory::insert_into_dirents (const string& key,
    dirents[key] = value;
 }
 
-/*void inode::disown() {
+void inode::disown() {
    dir_ptr dir = dynamic_pointer_cast<directory>(contents);
    contents->disown();
    contents = nullptr;
 }
 
-void directory::disown() {
+void base_file::disown() {}
+
+/*void directory::disown() {
    for (auto iter = dirents.begin(); iter != dirents.end(); ){
       if (iter->first == "." || iter->first == ".."){
          // do something

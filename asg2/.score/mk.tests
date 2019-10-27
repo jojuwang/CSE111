@@ -4,7 +4,7 @@ export PATH=$PATH:/afs/cats.ucsc.edu/courses/cmps104a-wm/bin/
 ulimit -f 32
 ulimit -t 120
 
-PROG=./yshell
+PROG=../yshell
 
 for test in test*.ysh
 do
