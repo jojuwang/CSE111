@@ -45,9 +45,9 @@ const vector<string> inode_state::get_path() {
 }
 
 inode_state::~inode_state() {
-   cwd = nullptr;
+   /*cwd = nullptr;
    if (root) root->disown();
-   root = nullptr;
+   root = nullptr;*/
 }
 
 ostream& operator<< (ostream& out, const inode_state& state) {
@@ -154,12 +154,13 @@ void directory::insert_into_dirents (const string& key,
 }
 
 void inode::disown() {
-   dir_ptr dir = dynamic_pointer_cast<directory>(contents);
    contents->disown();
    contents = nullptr;
 }
 
 void base_file::disown() {}
+
+void plain_file::disown() {}
 
 /*void directory::disown() {
    for (auto iter = dirents.begin(); iter != dirents.end(); ){

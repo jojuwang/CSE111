@@ -86,6 +86,12 @@ void fn_prompt (inode_state& state, const wordvec& words){
    DEBUGF ('c', state);
    DEBUGF ('c', words);
    //state.prompt_ = words.at(1);
+   string result {};
+   for (unsigned i = 1; i < words.size(); i++){
+      result += words[i];
+      result += " ";
+   }
+   state.set_prompt(result);
 }
 
 void fn_pwd (inode_state& state, const wordvec& words){
