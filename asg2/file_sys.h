@@ -43,9 +43,14 @@ class inode_state {
       inode_state& operator= (const inode_state&) = delete; // op=
       inode_state();
       ~inode_state();
+      inode_ptr get_root();
+      inode_ptr get_cwd();
+      void set_cwd(inode_ptr dest);
       const string& prompt() const;
       void set_prompt(string s);
       const vector<string> get_path();
+      void push_path(string s);
+      void pop_path();
       
 };
 
@@ -68,9 +73,12 @@ class inode: public enable_shared_from_this<inode> {
       static int next_inode_nr;
       int inode_nr;
       base_file_ptr contents;
+      int type_nr;
    public:
       inode (file_type);
       int get_inode_nr() const;
+      base_file_ptr get_contents();
+      int is_dir();
       void disown();
 };
 
@@ -100,6 +108,8 @@ class base_file {
       virtual inode_ptr mkdir (const string& dirname);
       virtual inode_ptr mkfile (const string& filename);
       virtual void insert_into_dirents(const string&, inode_ptr);
+      virtual map<string,inode_ptr>& get_dirents()
+         {throw runtime_error("Invalid file type");}
       virtual void disown();
 };
 
@@ -114,7 +124,7 @@ class base_file {
 
 class plain_file: public base_file {
    private:
-      wordvec data;
+      wordvec data {};
       virtual const string error_file_type() const override {
          return "plain file";
       }
@@ -156,7 +166,8 @@ class directory: public base_file {
       virtual inode_ptr mkdir (const string& dirname) override;
       virtual inode_ptr mkfile (const string& filename) override;
       void insert_into_dirents(const string&, inode_ptr) override;
-      //virtual void disown();
+      virtual map<string,inode_ptr>& get_dirents(){return dirents;}
+      virtual void disown();
 };
 
 #endif

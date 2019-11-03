@@ -1,6 +1,12 @@
-../yshell build Oct 24 2019 20:20:51
+../yshell build Oct 31 2019 00:37:52
 % prompt this is my prompt:
-% ls /
-% ls
-% exit 5
+this is my prompt: ls /
+/:
+     1       2  .
+     1       2  ..
+this is my prompt: ls
+/:
+     1       2  .
+     1       2  ..
+this is my prompt: exit 5
 yshell: exit(0)

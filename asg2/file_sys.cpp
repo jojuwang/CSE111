@@ -44,10 +44,30 @@ const vector<string> inode_state::get_path() {
    return path;
 }
 
+void inode_state::push_path(string s) {
+   path.push_back(s);
+}
+
+void inode_state::pop_path(){
+   path.pop_back();
+}
+
 inode_state::~inode_state() {
-   /*cwd = nullptr;
+   cwd = nullptr;
    if (root) root->disown();
-   root = nullptr;*/
+   root = nullptr;
+}
+
+inode_ptr inode_state::get_root() {
+   return root;
+}
+
+inode_ptr inode_state::get_cwd() {
+   return cwd;
+}
+
+void inode_state::set_cwd(inode_ptr dest) {
+   cwd = dest;
 }
 
 ostream& operator<< (ostream& out, const inode_state& state) {
@@ -60,9 +80,11 @@ inode::inode(file_type type): inode_nr (next_inode_nr++) {
    switch (type) {
       case file_type::PLAIN_TYPE:
            contents = make_shared<plain_file>();
+           type_nr = 0;
            break;
       case file_type::DIRECTORY_TYPE:
            contents = make_shared<directory>();
+           type_nr = 1;
            break;
    }
    DEBUGF ('i', "inode " << inode_nr << ", type = " << type);
@@ -71,6 +93,14 @@ inode::inode(file_type type): inode_nr (next_inode_nr++) {
 int inode::get_inode_nr() const {
    DEBUGF ('i', "inode = " << inode_nr);
    return inode_nr;
+}
+
+base_file_ptr inode::get_contents(){
+   return contents;
+}
+
+int inode::is_dir() {
+   return type_nr;
 }
 
 
@@ -102,10 +132,20 @@ void base_file::insert_into_dirents (const string&, inode_ptr){
    throw file_error ("is a " + error_file_type());
 }
 
+/*inode_ptr plain_file::mkdir (const string& dirname){
+   throw runtime_error("This is a plain file");
+}*/
+
 
 size_t plain_file::size() const {
    size_t size {0};
    DEBUGF ('i', "size = " << size);
+   for (unsigned i = 0; i < data.size(); i++){
+      size += data[i].length();
+      if (i != data.size() - 1){
+         size += 1;
+      }
+   }
    return size;
 }
 
@@ -116,36 +156,50 @@ const wordvec& plain_file::readfile() const {
 
 void plain_file::writefile (const wordvec& words) {
    DEBUGF ('i', words);
+   data.clear();
+   for (unsigned i = 0; i < words.size(); i++){
+      data.push_back(words[i]);
+   }
 }
 
 size_t directory::size() const {
    size_t size {0};
    DEBUGF ('i', "size = " << size);
+   for (auto iter = dirents.begin(); iter != dirents.end(); ++iter){
+      size += 1;
+   }
    return size;
 }
 
 void directory::remove (const string& filename) {
    DEBUGF ('i', filename);
+   for (auto iter = dirents.begin(); iter != dirents.end(); ++iter){
+      if (iter->first == filename){
+         if (iter->second->is_dir() == 0){
+            dirents.erase(filename);
+         } else {
+            if (dirents[filename]->get_contents()->size() != 2){
+               throw file_error ("Directory" + filename
+                                 + "is not empty");
+            } else {
+               dirents[filename]->get_contents()->disown();
+               dirents.erase(filename);
+            }
+         }
+      }
+   }
 }
 
 inode_ptr directory::mkdir (const string& dirname) {
    DEBUGF ('i', dirname);
-   inode_ptr self = dirents["."];
-   inode_ptr parent = dirents[".."];
-   for (auto iter = dirents.begin(); iter != dirents.end(); ++iter){
-      auto myPair = *iter;
-      cout << myPair.first << endl;
-      inode_ptr ptr2 = myPair.second;
-   }
-   return nullptr;
+   inode_ptr newDir = make_shared<inode>(file_type::DIRECTORY_TYPE);
+   return newDir;
 }
 
 inode_ptr directory::mkfile (const string& filename) {
    DEBUGF ('i', filename);
-   //...
-   /*inode_ptr owner_this = dirents["."];
-   newDir->dirents[".."] = owner_this;*/
-   return nullptr;
+   inode_ptr newFile = make_shared<inode>(file_type::PLAIN_TYPE);
+   return newFile;
 }
 
 void directory::insert_into_dirents (const string& key,
@@ -162,15 +216,14 @@ void base_file::disown() {}
 
 void plain_file::disown() {}
 
-/*void directory::disown() {
+void directory::disown() {
    for (auto iter = dirents.begin(); iter != dirents.end(); ){
       if (iter->first == "." || iter->first == ".."){
-         // do something
+         // do nothing
       } else {
-         // do something
+         iter->second->disown();
       }
       dirents.erase(iter++);
-      iter++;
    }
-}*/
+}
 

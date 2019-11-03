@@ -1,4 +1,4 @@
-../yshell build Oct 24 2019 20:20:51
+../yshell build Oct 31 2019 00:37:52
 % mkdir foo
 % mkdir foo/bar
 % mkdir foo/bar/baz
@@ -10,6 +10,7 @@
 % cd foo
 % make file8 nine ten eleven
 % cat file8
+nine ten eleven 
 % cd /
 % lsr /
 % lsr foo foo/bar
