@@ -15,6 +15,13 @@
 template <typename key_t, typename mapped_t, class less_t>
 listmap<key_t,mapped_t,less_t>::~listmap() {
    DEBUGF ('l', reinterpret_cast<const void*> (this));
+   // can I just call erase while anchor->next != anchor?
+   node* curr = anchor()->next;
+   while(curr != anchor()){
+      node* temp = curr->next;
+      delete curr;
+      curr = temp;
+   }
 }
 
 //
@@ -24,7 +31,16 @@ template <typename key_t, typename mapped_t, class less_t>
 typename listmap<key_t,mapped_t,less_t>::iterator
 listmap<key_t,mapped_t,less_t>::insert (const value_type& pair) {
    DEBUGF ('l', &pair << "->" << pair);
-   return iterator();
+   node* curr = anchor()->next;
+   while(curr != anchor() && less ((curr)->value.first, pair.first)){
+      curr = curr->next;
+   }
+   node* n = new node(curr, curr->prev, pair);
+   curr->prev->next = n;
+   curr->prev = n;
+   iterator i = n;
+   cout << "insert called \n";
+   return i;
 }
 
 //
@@ -34,7 +50,16 @@ template <typename key_t, typename mapped_t, class less_t>
 typename listmap<key_t,mapped_t,less_t>::iterator
 listmap<key_t,mapped_t,less_t>::find (const key_type& that) {
    DEBUGF ('l', that);
-   return iterator();
+   node* curr = anchor()->next;
+   int key_found = 0;
+   node* n ();
+   while(curr != anchor() && curr->value.first != that){
+      curr = curr->next;
+      if (curr->value.first == that){
+         key_found = 1;
+      }
+   }
+   return curr;
 }
 
 //
@@ -44,7 +69,13 @@ template <typename key_t, typename mapped_t, class less_t>
 typename listmap<key_t,mapped_t,less_t>::iterator
 listmap<key_t,mapped_t,less_t>::erase (iterator position) {
    DEBUGF ('l', &*position);
-   return iterator();
+//it = find
+//iterator next = ++it
+   iterator next = ++position;
+   position->prev->next = position->next;
+   position->next->prev = position->prev;
+   delete position;
+   return next;
 }
 
 

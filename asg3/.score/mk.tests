@@ -18,8 +18,8 @@ templates/misc/pkeyvalue.perl <$test1>$test.pkeyvalue.out
 done
 
 echo If any of the "*.out.diffs" have data,
-echo then ydc did not produce correct output.
+echo then keyvalue did not produce correct output.
 ls -la *.out.diffs
 
-$GRIND $PROG <testx-leaks.ydc 1>leaks-test.out 2>leaks-test.err
+$GRIND $PROG <testx-leaks.keyvalue 1>leaks-test.out 2>leaks-test.err
 
