@@ -35,12 +35,16 @@ listmap<key_t,mapped_t,less_t>::insert (const value_type& pair) {
    while(curr != anchor() && less ((curr)->value.first, pair.first)){
       curr = curr->next;
    }
-   node* n = new node(curr, curr->prev, pair);
-   curr->prev->next = n;
-   curr->prev = n;
-   iterator i = n;
-   cout << "insert called \n";
-   return i;
+   if (curr->value.first == pair.first){
+      curr->value.second = pair.second;
+      return curr;
+   } else {
+      node* n = new node(curr, curr->prev, pair);
+      curr->prev->next = n;
+      curr->prev = n;
+      iterator i = n;
+      return i;
+   }
 }
 
 //
@@ -51,13 +55,9 @@ typename listmap<key_t,mapped_t,less_t>::iterator
 listmap<key_t,mapped_t,less_t>::find (const key_type& that) {
    DEBUGF ('l', that);
    node* curr = anchor()->next;
-   int key_found = 0;
    node* n ();
    while(curr != anchor() && curr->value.first != that){
       curr = curr->next;
-      if (curr->value.first == that){
-         key_found = 1;
-      }
    }
    return curr;
 }

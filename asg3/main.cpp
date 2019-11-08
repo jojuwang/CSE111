@@ -68,6 +68,7 @@ int main (int argc, char** argv) {
    regex comment_regex {R"(^\s*(#.*)?$)"};
    regex key_value_regex {R"(^\s*(.*?)\s*=\s*(.*?)\s*$)"};
    regex trimmed_regex {R"(^\s*([^=]+?)\s*$)"};
+   //int count = 1;
    for (;;) {
       string line;
       getline (cin, line);
@@ -85,7 +86,22 @@ int main (int argc, char** argv) {
             xpair<const string,string> pair (result[1], result[2]);
             test.insert(pair);
          } else if (result[1].length() != 0 && result[2].length() == 0){
+            /*string discard (result[1]);
+            for (str_str_map::iterator i = test.begin();
+                 i != test.end(); ++i){
+               if (i->first == discard){
+                  test.erase(i);
+                  break;
+               }
+            }*/
          } else if (result[1].length() == 0 && result[2].length() != 0){
+            string search (result[2]);
+            for (str_str_map::iterator i = test.begin();
+                 i != test.end(); ++i){
+               if (i->second == search){
+                  cout << i->first << " = " << i->second << endl;
+               }
+            }
          } else {
             for (str_str_map::iterator i = test.begin();
                  i != test.end(); ++i){
@@ -96,7 +112,13 @@ int main (int argc, char** argv) {
          cout << "query: \"" << result[1] << "\"" << endl;
          string key_name (result[1]);
          //cout << key_name << endl;
-         //test.find(key_name);
+         str_str_map::iterator found = test.find(key_name);
+         if (found == test.end()){
+            cout << key_name << ": key not found" << endl;
+         } else {
+            cout << found->first << " = "
+                 << found->second << endl;
+         }
       }else {
          assert (false and "This can not happen.");
       }
