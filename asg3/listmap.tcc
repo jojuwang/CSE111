@@ -31,15 +31,27 @@ template <typename key_t, typename mapped_t, class less_t>
 typename listmap<key_t,mapped_t,less_t>::iterator
 listmap<key_t,mapped_t,less_t>::insert (const value_type& pair) {
    DEBUGF ('l', &pair << "->" << pair);
-   node* curr = anchor()->next;
-   while(curr != anchor() && less ((curr)->value.first, pair.first)){
+   node* curr = begin().where;
+   //cout << "curr assigned" << endl;
+   while(curr != end().where && less ((curr)->value.first, pair.first)){
       curr = curr->next;
+      //cout << "curr moved" << endl;
    }
-   if (curr->value.first == pair.first){
+   //cout << "while loop passed" << endl;
+   if (curr == end().where){
+      node* start = new node(curr, curr->prev, pair);
+      curr->prev->next = start;
+      curr->prev = start;
+      iterator result = start;
+      return result;
+   } else if (curr->value.first == pair.first){
+      //cout << "if cond entered" << endl;
       curr->value.second = pair.second;
       return curr;
    } else {
+      //cout << "else cond entered" << endl;
       node* n = new node(curr, curr->prev, pair);
+      //cout << "new node created" << endl;
       curr->prev->next = n;
       curr->prev = n;
       iterator i = n;
@@ -69,12 +81,10 @@ template <typename key_t, typename mapped_t, class less_t>
 typename listmap<key_t,mapped_t,less_t>::iterator
 listmap<key_t,mapped_t,less_t>::erase (iterator position) {
    DEBUGF ('l', &*position);
-//it = find
-//iterator next = ++it
-   iterator next = ++position;
-   position->prev->next = position->next;
-   position->next->prev = position->prev;
-   delete position;
+   iterator next = position.where->next;
+   position.where->prev->next = position.where->next;
+   position.where->next->prev = position.where->prev;
+   delete position.where;
    return next;
 }
 

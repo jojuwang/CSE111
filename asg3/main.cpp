@@ -55,7 +55,7 @@ int main (int argc, char** argv) {
    }
 
    for (str_str_map::iterator itor = test.begin();
-        itor != test.end(); ++itor) {
+        itor != test.end(); ++itor) {                  // HERE!!!!!!!
       cout << "During iteration: " << *itor << endl;
    }
 
@@ -68,32 +68,43 @@ int main (int argc, char** argv) {
    regex comment_regex {R"(^\s*(#.*)?$)"};
    regex key_value_regex {R"(^\s*(.*?)\s*=\s*(.*?)\s*$)"};
    regex trimmed_regex {R"(^\s*([^=]+?)\s*$)"};
-   //int count = 1;
+   string infile = "-";
+   int count = 1;
+   /*   istream infile = cin; // Proper syntax???
+    outer for loop necessary
+    for all of str_str_map test, change "infile" to the file specified
+    infile defaults to cin, changes to cin if test.pair->first = "-"
+   int count = 1;
+   
+   nested for loop for file contents*/
    for (;;) {
+      cout << infile << ": " << count << ": " /*<< line*/;
       string line;
       getline (cin, line);
       if (cin.eof()) break;
-      cout << endl << "input: \"" << line << "\"" << endl;
+      //cout << endl << "input: \"" << line << "\"" << endl;
       smatch result;
       if (regex_search (line, result, comment_regex)) {
-         cout << "Comment or empty line." << endl;
+         //cout << "Comment or empty line." << endl;
+         ++count;
          continue;
       }
       if (regex_search (line, result, key_value_regex)) {
-         cout << "key  : \"" << result[1] << "\"" << endl;
-         cout << "value: \"" << result[2] << "\"" << endl;
+         //cout << "key  : \"" << result[1] << "\"" << endl;
+         //cout << "value: \"" << result[2] << "\"" << endl;
          if (result[1].length() != 0 && result[2].length() != 0){
             xpair<const string,string> pair (result[1], result[2]);
             test.insert(pair);
+            cout << result[1] << " = " << result[2] << endl;
          } else if (result[1].length() != 0 && result[2].length() == 0){
-            /*string discard (result[1]);
+            string discard (result[1]);
             for (str_str_map::iterator i = test.begin();
                  i != test.end(); ++i){
                if (i->first == discard){
                   test.erase(i);
                   break;
                }
-            }*/
+            }
          } else if (result[1].length() == 0 && result[2].length() != 0){
             string search (result[2]);
             for (str_str_map::iterator i = test.begin();
@@ -109,9 +120,8 @@ int main (int argc, char** argv) {
             }
          }
       }else if (regex_search (line, result, trimmed_regex)) {
-         cout << "query: \"" << result[1] << "\"" << endl;
+         //cout << "query: \"" << result[1] << "\"" << endl;
          string key_name (result[1]);
-         //cout << key_name << endl;
          str_str_map::iterator found = test.find(key_name);
          if (found == test.end()){
             cout << key_name << ": key not found" << endl;
@@ -122,7 +132,9 @@ int main (int argc, char** argv) {
       }else {
          assert (false and "This can not happen.");
       }
+      ++count;
    }
+   cout << endl;
    return 0;
 }
 
