@@ -10,6 +10,7 @@ using namespace std;
 
 #include <cassert>
 #include <regex>
+#include <fstream>
 #include "listmap.h"
 #include "xpair.h"
 #include "util.h"
@@ -34,96 +35,55 @@ void scan_options (int argc, char** argv) {
    }
 }
 
-/*void scan_file (istream& infile, const string& filename){
-   for(;;){
-      string line;
-      getline(infile, line);
-      if (infile.eof()) break;
-   }
-}*/
-
-int main (int argc, char** argv) {
-   sys_info::execname (argv[0]);
-   scan_options (argc, argv);
-
-   str_str_map test;
-   //string progname (basename (argv[0]));
-   /*for (char** argp = &argv[optind]; argp != &argv[argc]; ++argp) {
-      str_str_pair pair (*argp, to_string<int> (argp - argv));
-      cout << "Before insert: " << pair << endl;
-      test.insert (pair);
-   }
-
-   for (str_str_map::iterator itor = test.begin();
-        itor != test.end(); ++itor) {                  // HERE!!!!!!!
-      cout << "During iteration: " << *itor << endl;
-   }
-
-   str_str_map::iterator itor = test.begin();
-   test.erase (itor);
-
-   cout << "EXIT_SUCCESS" << endl;
-   return EXIT_SUCCESS;*/
-
+void mapit(istream& infile, const string& inName,
+           str_str_map& myMap) {
    regex comment_regex {R"(^\s*(#.*)?$)"};
    regex key_value_regex {R"(^\s*(.*?)\s*=\s*(.*?)\s*$)"};
    regex trimmed_regex {R"(^\s*([^=]+?)\s*$)"};
-   string infile = "-";
    int count = 1;
-   /*   istream infile = cin; // Proper syntax???
-    outer for loop necessary
-    for all of str_str_map test, change "infile" to the file specified
-    infile defaults to cin, changes to cin if test.pair->first = "-"
-   int count = 1;
-   
-   nested for loop for file contents*/
+
    for (;;) {
-      cout << infile << ": " << count << ": " /*<< line*/;
       string line;
-      getline (cin, line);
-      if (cin.eof()) break;
-      //cout << endl << "input: \"" << line << "\"" << endl;
+      getline (infile, line);
+      if (infile.eof()) break;
+      cout << inName << ": " << count << ": " << line << endl;
       smatch result;
       if (regex_search (line, result, comment_regex)) {
-         //cout << "Comment or empty line." << endl;
          ++count;
          continue;
       }
       if (regex_search (line, result, key_value_regex)) {
-         //cout << "key  : \"" << result[1] << "\"" << endl;
-         //cout << "value: \"" << result[2] << "\"" << endl;
          if (result[1].length() != 0 && result[2].length() != 0){
             xpair<const string,string> pair (result[1], result[2]);
-            test.insert(pair);
+            myMap.insert(pair);
             cout << result[1] << " = " << result[2] << endl;
          } else if (result[1].length() != 0 && result[2].length() == 0){
             string discard (result[1]);
-            for (str_str_map::iterator i = test.begin();
-                 i != test.end(); ++i){
+            for (str_str_map::iterator i = myMap.begin();
+                 i != myMap.end(); ++i){
                if (i->first == discard){
-                  test.erase(i);
+                  myMap.erase(i);
                   break;
                }
             }
          } else if (result[1].length() == 0 && result[2].length() != 0){
             string search (result[2]);
-            for (str_str_map::iterator i = test.begin();
-                 i != test.end(); ++i){
+            for (str_str_map::iterator i = myMap.begin();
+                 i != myMap.end(); ++i){
                if (i->second == search){
                   cout << i->first << " = " << i->second << endl;
                }
             }
          } else {
-            for (str_str_map::iterator i = test.begin();
-                 i != test.end(); ++i){
+            for (str_str_map::iterator i = myMap.begin();
+                 i != myMap.end(); ++i){
                cout << i->first << " = " << i->second << endl;
             }
          }
       }else if (regex_search (line, result, trimmed_regex)) {
-         //cout << "query: \"" << result[1] << "\"" << endl;
          string key_name (result[1]);
-         str_str_map::iterator found = test.find(key_name);
-         if (found == test.end()){
+         str_str_map::iterator found = myMap.find(key_name);
+         if (found == myMap.end()){
             cout << key_name << ": key not found" << endl;
          } else {
             cout << found->first << " = "
@@ -134,7 +94,45 @@ int main (int argc, char** argv) {
       }
       ++count;
    }
-   cout << endl;
-   return 0;
+}
+
+int main (int argc, char** argv) {
+   sys_info::execname (argv[0]);
+   scan_options (argc, argv);
+   int status = 0;
+   str_str_map myMap;
+
+   if (argc == 1){
+      mapit(cin, "-", myMap);
+   } else {
+      str_str_map test;
+      string progname (basename (argv[0]));
+      for (char** argp = &argv[optind]; argp != &argv[argc]; ++argp) {
+         str_str_pair pair (*argp, to_string<int> (argp - argv));
+         test.insert (pair);
+      }
+
+      for (str_str_map::iterator itor = test.begin();
+           itor != test.end(); ++itor) {
+         string filename = itor->first;
+         if (filename == "-"){
+            mapit(cin, filename, myMap);
+         } else {
+            ifstream infile (itor->first);
+            if (infile.fail()) {
+               status = 1;
+               cerr << progname << ": " << filename << ": "
+                    << strerror (errno) << endl;
+            } else {
+               mapit (infile, filename, myMap);
+               infile.close();
+            }
+         }
+      }
+
+      str_str_map::iterator itor = test.begin();
+      test.erase (itor);
+   }
+   return status;
 }
 

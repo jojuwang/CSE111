@@ -15,7 +15,6 @@
 template <typename key_t, typename mapped_t, class less_t>
 listmap<key_t,mapped_t,less_t>::~listmap() {
    DEBUGF ('l', reinterpret_cast<const void*> (this));
-   // can I just call erase while anchor->next != anchor?
    node* curr = anchor()->next;
    while(curr != anchor()){
       node* temp = curr->next;
@@ -32,12 +31,9 @@ typename listmap<key_t,mapped_t,less_t>::iterator
 listmap<key_t,mapped_t,less_t>::insert (const value_type& pair) {
    DEBUGF ('l', &pair << "->" << pair);
    node* curr = begin().where;
-   //cout << "curr assigned" << endl;
    while(curr != end().where && less ((curr)->value.first, pair.first)){
       curr = curr->next;
-      //cout << "curr moved" << endl;
    }
-   //cout << "while loop passed" << endl;
    if (curr == end().where){
       node* start = new node(curr, curr->prev, pair);
       curr->prev->next = start;
@@ -45,13 +41,10 @@ listmap<key_t,mapped_t,less_t>::insert (const value_type& pair) {
       iterator result = start;
       return result;
    } else if (curr->value.first == pair.first){
-      //cout << "if cond entered" << endl;
       curr->value.second = pair.second;
       return curr;
    } else {
-      //cout << "else cond entered" << endl;
       node* n = new node(curr, curr->prev, pair);
-      //cout << "new node created" << endl;
       curr->prev->next = n;
       curr->prev = n;
       iterator i = n;

@@ -8,3 +8,15 @@ https://ue.ucsc.edu/academic-misconduct.html
 
 -- Joseph Wang (jojuwang@ucsc.edu)
 
+**Note:
+
+I wasn't sure, in the case of multiple files, if I was
+supposed to create new listmaps for each individual file
+or use the same one for all of them.  Upon further
+examination, run6.files from the sample-output folder
+seems to suggest the latter.
+
+test2.in never inserted an "a" key, but it's printed out
+on line 31 of run6.files.
+
+If this turns out to be incorrect, I apologize.
