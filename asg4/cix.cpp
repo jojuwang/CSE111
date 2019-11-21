@@ -22,8 +22,8 @@ unordered_map<string,cix_command> command_map {
    {"exit", cix_command::EXIT},
    {"help", cix_command::HELP},
    {"ls"  , cix_command::LS  },
-   /*{"get" , cix_command::GET },
-   {"put" , cix_command::PUT },
+   {"get" , cix_command::GET },
+   /*{"put" , cix_command::PUT },
    {"rm"  , cix_command::RM  },*/
 };
 
@@ -56,6 +56,26 @@ void cix_ls (client_socket& server) {
       outlog << "received " << header.nbytes << " bytes" << endl;
       buffer[header.nbytes] = '\0';
       cout << buffer.get();
+   }
+}
+
+void cix_get (client_socket& server) {
+   cix_header header;
+   header.command = cix_command::GET;
+   //header.filename = ???;
+   outlog << "sending header " << header << endl;
+   send_packet (server, &header, sizeof header);
+   recv_packet (server, &header, sizeof header);
+   outlog << "received header " << header << endl;
+   if (header.command != cix_command::FILEOUT) {
+      outlog << "sent GET, server did not return FILEOUT" << endl;
+      outlog << "server returned " << header << endl;
+   } else {
+      ostream out;
+      auto buffer = make_unique<char[]> (header.nbytes + 1);
+      recv_packet (server, buffer.get(), header.nbytes);
+      out.write(buffer, header.nbytes);
+      // cout << buffer.get();
    }
 }
 
@@ -94,6 +114,9 @@ int main (int argc, char** argv) {
                break;
             case cix_command::LS:
                cix_ls (server);
+               break;
+            case cix_command::GET:
+               cix_get (server);
                break;
             default:
                outlog << line << ": invalid command" << endl;

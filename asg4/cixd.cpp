@@ -47,6 +47,22 @@ void reply_ls (accepted_socket& client_sock, cix_header& header) {
    outlog << "sent " << ls_output.size() << " bytes" << endl;
 }
 
+void reply_get (accepted_socket& client_sock, cix_header& header) {
+   // I have to first check if the file exists before sending anything
+   if (/*file not found*/) {
+      outlog << "File not found" << strerror (errno) << endl;
+      header.command = cix_command::NAK;
+      header.nbytes = errno;
+      send_packet (client_sock, &header, sizeof header);
+      return;
+   }
+   header.command = cix_command::FILEOUT;
+   header.nbytes = /*???*/;
+   outlog << "sending header " << header << endl;
+   send_packet (client_sock, &header, sizeof header);//server
+   send_packet (client_sock, /**/, /**/);//client
+}
+
 
 void run_server (accepted_socket& client_sock) {
    outlog.execname (outlog.execname() + "-server");
@@ -59,6 +75,9 @@ void run_server (accepted_socket& client_sock) {
          switch (header.command) {
             case cix_command::LS: 
                reply_ls (client_sock, header);
+               break;
+            case cix_command::GET:
+               reply_get (client_sock, header);
                break;
             default:
                outlog << "invalid client header:" << header << endl;
