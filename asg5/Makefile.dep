@@ -1,4 +1,4 @@
-# Makefile.dep created Mon Nov 25 14:01:16 PST 2019
+# Makefile.dep created Tue Nov 26 15:18:37 PST 2019
 graphics.o: graphics.cpp graphics.h rgbcolor.h shape.h util.h debug.h \
  util.tcc
 interp.o: interp.cpp debug.h interp.h graphics.h rgbcolor.h shape.h \

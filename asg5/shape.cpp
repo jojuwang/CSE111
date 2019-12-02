@@ -39,6 +39,7 @@ shape::shape() {
 text::text (void* glut_bitmap_font_, const string& textdata_):
       glut_bitmap_font(glut_bitmap_font_), textdata(textdata_) {
    DEBUGF ('c', this);
+   cout << textdata << endl;
 }
 
 ellipse::ellipse (GLfloat width, GLfloat height):
@@ -66,6 +67,12 @@ square::square (GLfloat width): rectangle (width, width) {
 
 void text::draw (const vertex& center, const rgbcolor& color) const {
    DEBUGF ('d', this << "(" << center << "," << color << ")");
+   cout << "in fnc" << endl;
+   static auto u_str = reinterpret_cast<const GLubyte*>
+                       (textdata.c_str());
+   int str_width = glutBitmapLength (glut_bitmap_font, u_str);
+   int str_height = glutBitmapHeight (glut_bitmap_font);
+   
 }
 
 void ellipse::draw (const vertex& center, const rgbcolor& color) const {

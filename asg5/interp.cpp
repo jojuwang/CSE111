@@ -81,7 +81,18 @@ shape_ptr interpreter::make_shape (param begin, param end) {
 
 shape_ptr interpreter::make_text (param begin, param end) {
    DEBUGF ('f', range (begin, end));
-   return make_shared<text> (nullptr, string());
+   // modify
+   void* font = *begin;
+   string txt();
+   string space = "";
+   auto i = begin;
+   ++i;
+   for (; i != end; ++i){
+      txt += space;
+      txt += *i;
+      space = " ";
+   }
+   return make_shared<text> (font, txt);
 }
 
 shape_ptr interpreter::make_ellipse (param begin, param end) {
