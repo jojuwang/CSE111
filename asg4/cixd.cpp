@@ -1,6 +1,8 @@
 // $Id: cixd.cpp,v 1.8 2019-04-05 15:04:28-07 - - $
 
 #include <iostream>
+#include <fstream>
+#include <memory>
 #include <string>
 #include <vector>
 using namespace std;
@@ -47,20 +49,58 @@ void reply_ls (accepted_socket& client_sock, cix_header& header) {
    outlog << "sent " << ls_output.size() << " bytes" << endl;
 }
 
-void reply_get (accepted_socket& client_sock, cix_header& header) {
+void reply_get (accepted_socket& client_sock, cix_header& header,
+                const char *fname) {
    // I have to first check if the file exists before sending anything
-   if (/*file not found*/) {
-      outlog << "File not found" << strerror (errno) << endl;
+   ifstream if_obj(fname);
+   if ( if_obj.fail() ) {
+      outlog << "File not found.  " << strerror (errno) << endl;
       header.command = cix_command::NAK;
       header.nbytes = errno;
       send_packet (client_sock, &header, sizeof header);
       return;
    }
+   if_obj.seekg(0, if_obj.end);
+   uint32_t fsize = if_obj.tellg();
+   if_obj.seekg(0, if_obj.beg);
+
+   auto buffer = make_unique<char[]> (fsize);
+   if_obj.read(buffer.get(), fsize);
+   if_obj.close();
    header.command = cix_command::FILEOUT;
-   header.nbytes = /*???*/;
+   header.nbytes = fsize;
    outlog << "sending header " << header << endl;
    send_packet (client_sock, &header, sizeof header);//server
-   send_packet (client_sock, /**/, /**/);//client
+   send_packet (client_sock, buffer.get(), fsize);//client
+}
+
+void reply_put (accepted_socket& client_sock,cix_header& header,
+                const char *fname) {
+   ofstream outfile;
+   auto buffer = make_unique<char[]> (header.nbytes + 1);
+   recv_packet (client_sock, buffer.get(), header.nbytes);
+   outlog << "received " << header.nbytes << " bytes" << endl;
+   outfile.open(fname);
+   outfile.write(buffer.get(), header.nbytes);
+   outfile.close();
+
+   header.command = cix_command::ACK;
+   send_packet (client_sock, &header, sizeof header);
+}
+
+void reply_rm (accepted_socket& client_sock,cix_header& header,
+                const char *fname) {
+   int discard;
+   discard = unlink (fname);
+   if ( discard != 0 ) {
+      outlog << "File not found.  " << strerror (errno) << endl;
+      header.command = cix_command::NAK;
+      header.nbytes = errno;
+      send_packet (client_sock, &header, sizeof header);
+      return;
+   }
+   header.command = cix_command::ACK;
+   send_packet (client_sock, &header, sizeof header);
 }
 
 
@@ -77,7 +117,13 @@ void run_server (accepted_socket& client_sock) {
                reply_ls (client_sock, header);
                break;
             case cix_command::GET:
-               reply_get (client_sock, header);
+               reply_get (client_sock, header, header.filename);
+               break;
+            case cix_command::PUT:
+               reply_put (client_sock, header, header.filename);
+               break;
+            case cix_command::RM:
+               reply_rm (client_sock, header, header.filename);
                break;
             default:
                outlog << "invalid client header:" << header << endl;
